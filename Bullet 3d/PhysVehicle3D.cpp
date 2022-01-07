@@ -41,8 +41,14 @@ void PhysVehicle3D::Render()
 	//creacio de cos
 	Cube chassis(info.chassis_size.x - 0.5 , info.chassis_size.y, info.chassis_size.z - 3);
 	Cube body(info.chassis_size.x + 1, info.chassis_size.y - 1, info.chassis_size.z + 2 );
-	Cube bodyleght(info.chassis_size.x - 1, info.chassis_size.y - 1, info.chassis_size.z - 2 );
+	Cube bodyleght(info.chassis_size.x - 1, info.chassis_size.y - 1.5, info.chassis_size.z - 2 );
 	Cube bodyfront(info.chassis_size.x + 1, info.chassis_size.y - 1.5, info.chassis_size.z - 3 );
+	Cube aler1(info.chassis_size.x - 2, info.chassis_size.y - 1.5, info.chassis_size.z - 3.5);
+	Cube aler2(info.chassis_size.x - 2, info.chassis_size.y - 2, info.chassis_size.z);
+	//Cube aler3(info.chassis_size.x + 1.9, info.chassis_size.y - 1.5, info.chassis_size.z - 3 );
+
+	//colors
+	//body.color = Red;
 
 	//position world(x,y,z)
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&chassis.transform);
@@ -51,15 +57,18 @@ void PhysVehicle3D::Render()
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&bodyfront.transform);
 
 	btQuaternion q = vehicle->getChassisWorldTransform().getRotation();
+
 	// position (x,y,z) from car
 	btVector3 offset(info.chassis_offset.x, info.chassis_offset.y, info.chassis_offset.z - 1);
 	btVector3 offset2(info.chassis_offset.x, info.chassis_offset.y - 0.5, info.chassis_offset.z);
-	btVector3 offset3(info.chassis_offset.x, info.chassis_offset.y - 0.5, info.chassis_offset.z + 4);
-	btVector3 offset4(info.chassis_offset.x, info.chassis_offset.y - 0.7, info.chassis_offset.z + 5);
+	btVector3 offset3(info.chassis_offset.x, info.chassis_offset.y - 0.5, info.chassis_offset.z);
+	btVector3 offset4(info.chassis_offset.x, info.chassis_offset.y - 0.7, info.chassis_offset.z);
+	btVector3 offset5(info.chassis_offset.x, info.chassis_offset.y, info.chassis_offset.z);
 	offset = offset.rotate(q.getAxis(), q.getAngle());
 	offset2 = offset2.rotate(q.getAxis(), q.getAngle());
 	offset3 = offset3.rotate(q.getAxis(), q.getAngle());
 	offset4 = offset4.rotate(q.getAxis(), q.getAngle());
+	offset5 = offset5.rotate(q.getAxis(), q.getAngle());
 
 	//aluras dentro de el coche
 	chassis.transform.M[12] += offset.getX();
@@ -74,12 +83,17 @@ void PhysVehicle3D::Render()
 	bodyfront.transform.M[12] += offset4.getX();
 	bodyfront.transform.M[13] += offset4.getY();
 	bodyfront.transform.M[14] += offset4.getZ();
+	aler1.transform.M[12] += offset5.getX();
+	aler1.transform.M[13] += offset5.getY();
+	aler1.transform.M[14] += offset5.getZ();
 
 
 	chassis.Render();
 	body.Render();
 	bodyleght.Render();
 	bodyfront.Render();
+	aler1.Render();
+	//aler2.Render();
 }
 
 // ----------------------------------------------------------------------------

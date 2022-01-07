@@ -12,7 +12,7 @@ struct Wheel
 	vec3 direction; 
 	vec3 axis;
 	float suspensionRestLength; // max length for suspension in meters
-	float radius;
+	float radius = -1;
 	float width;
 	bool front; // is front wheel ?
 	bool drive; // does this wheel received engine power ?
