@@ -16,7 +16,7 @@ bool ModuleSceneIntro::Start()
 {
 	LOG("Loading Intro assets");
 	bool ret = true;
-
+	CreateObject({ 0,0,10 }, {20,20,20},Blue);
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
 
@@ -45,3 +45,13 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
 }
 
+void ModuleSceneIntro::CreateObject(const vec3 pos, const vec3 dim, Color bColor)
+{
+	// Create a cube to render a building
+	Cube* o;
+	o = new Cube(dim.x, dim.y, dim.z);
+	o->color = bColor;
+	o->SetPos(pos.x, pos.y + 1, pos.z);
+	obj.prim_obj.PushBack(o);
+	obj.phys_obj.PushBack(App->physics->AddBody(*o,0.0f));
+}
