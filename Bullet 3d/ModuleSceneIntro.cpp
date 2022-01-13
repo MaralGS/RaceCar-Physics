@@ -16,7 +16,7 @@ bool ModuleSceneIntro::Start()
 {
 	LOG("Loading Intro assets");
 	bool ret = true;
-	CreateObject({ 0,0,10 }, {20,20,20},Blue);
+	CreateObject({0,0,10},{20,20,20}, Red);
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
 
@@ -38,6 +38,8 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();
 
+	for (int i = 0; i < obj.prim_obj.Count(); i++)
+		obj.prim_obj[i]->Render();
 	return UPDATE_CONTINUE;
 }
 

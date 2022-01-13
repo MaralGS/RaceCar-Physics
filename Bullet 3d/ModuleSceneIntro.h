@@ -34,6 +34,9 @@ public:
 	PhysBody3D* pb_snake2[MAX_SNAKE];
 	Sphere s_snake2[MAX_SNAKE];
 	*/
+
+	Sphere Bola;
+
 	MapObj obj;
 	PhysBody3D* pb_chassis;
 	Cube p_chassis;
