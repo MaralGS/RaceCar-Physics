@@ -27,6 +27,14 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
+	float Fdrag;
+	float Fdragx;
+	float Fdragz;
+	float density;
+	float areax;
+	float areaz;
+	float cd;
+
 	PhysBody3D* AddBody(const Sphere& sphere, float mass = 1.0f);
 	PhysBody3D* AddBody(const Cube& cube, float mass = 1.0f);
 	PhysBody3D* AddBody(const Cylinder& cylinder, float mass = 1.0f);
