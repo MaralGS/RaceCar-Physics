@@ -116,10 +116,21 @@ update_status ModulePlayer::Update(float dt)
 	turn = acceleration = brake = 0.0f;
 
 
-
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
 		acceleration = MAX_ACCELERATION;
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
+		App->physics->fimp = 20000;
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == NULL) {
+		App->physics->fimp -= 100;
+	}
+
+	if (App->physics->fimp < 0) {
+		App->physics->fimp = 0;
 	}
 
 	brake += App->physics->Fdragx;
@@ -137,6 +148,7 @@ update_status ModulePlayer::Update(float dt)
 	}
 
 
+
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT && App->player->vehicle->GetKmh() <= 0.01)
 	{
 		acceleration = MAX_ACCELERATION / -4;
@@ -150,7 +162,7 @@ update_status ModulePlayer::Update(float dt)
 
 	
 
-	vehicle->ApplyEngineForce(acceleration);
+	vehicle->ApplyEngineForce(acceleration + App->physics->fimp);
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);
 
