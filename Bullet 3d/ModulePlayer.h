@@ -25,4 +25,7 @@ public:
 	float turn;
 	float acceleration;
 	float brake;
+	float time;
+	float timeaux = 0.0f;
+	bool spacer = false;
 };
