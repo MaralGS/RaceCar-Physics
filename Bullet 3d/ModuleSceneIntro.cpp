@@ -22,6 +22,7 @@ bool ModuleSceneIntro::Start()
 	CreateObject({65,20,79},{15,2,1.5}, White);
 	CreateObject({65,20,83},{15,2,1.5}, White);
 	CreateObject({87.5f,20,81},{30,2,15}, White);
+	CreateObject({87.5f,20,81},{30,2,15}, White);
 	
 	//Left Wall
 	CreateObject({200,0,0}, {2,600,600 }, BrightBlue);
