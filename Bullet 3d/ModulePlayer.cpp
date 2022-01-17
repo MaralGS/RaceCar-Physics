@@ -113,20 +113,16 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update(float dt)
 {
-	turn = acceleration = brake = 0.0f;
-
-	if (App->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN)
-	{
-		vehicle->SetPos(0, 22, 0);
-	}
-
+	turn = acceleration = brake = App->physics->totalForce = 0.0f;
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
 		acceleration = MAX_ACCELERATION;
+		zeroAux = false;
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && App->physics->fimp <= 0) {  // DELAY d'uns 5/6 segons
 		App->physics->fimp = 20000;
+		zeroAux = false;
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == NULL) {
@@ -141,12 +137,14 @@ update_status ModulePlayer::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 	{
+		zeroAux = false;
 		if(turn < TURN_DEGREES)
 			turn +=  TURN_DEGREES;
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 	{
+		zeroAux = false;
 		if(turn > -TURN_DEGREES)
 			turn -= TURN_DEGREES;
 	}
@@ -154,20 +152,36 @@ update_status ModulePlayer::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT && App->player->vehicle->GetKmh() <= 0.01)
 	{
 		acceleration = MAX_ACCELERATION / -4;
+		zeroAux = false;
 	}
 
+	if (acceleration == 0 && zeroAux == false) {
+		zeroAux = false;
+	}
 	
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT && App->player->vehicle->GetKmh() > 0)
 	{
 		brake = BRAKE_POWER;
+		zeroAux = false;
 	}
 
-	
+	App->physics->totalForce = acceleration + App->physics->fimp;
 
-	vehicle->ApplyEngineForce(acceleration + App->physics->fimp);
+	if (App->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN || zeroAux == true)
+	{
+		App->physics->fimp = 0.0f;
+		vehicle->SetPos(0, 22, 0);
+		vehicle->Brake(1000);
+		zeroAux = true;
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_0) == NULL && zeroAux == false)
+	{
+		vehicle->ApplyEngineForce(App->physics->totalForce);
+		vehicle->Brake(brake);
+	}
+
 	vehicle->Turn(turn);
-	vehicle->Brake(brake);
-
 	vehicle->Render();
 
 	char title[80];
@@ -176,6 +190,3 @@ update_status ModulePlayer::Update(float dt)
 
 	return UPDATE_CONTINUE;
 }
-
-
-
