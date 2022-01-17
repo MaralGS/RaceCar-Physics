@@ -70,10 +70,10 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 void ModuleSceneIntro::CreateObject(const vec3 pos, const vec3 dim, Color bColor)
 {
 	// Create a cube to render a building
-	Cube* o;
-	o = new Cube(dim.x, dim.y, dim.z);
-	o->color = bColor;
-	o->SetPos(pos.x, pos.y + 1, pos.z);
-	obj.prim_obj.PushBack(o);
-	obj.phys_obj.PushBack(App->physics->AddBody(*o,0.0f));
+	Cube* Ground;
+	Ground = new Cube(dim.x, dim.y, dim.z);
+	Ground->color = bColor;
+	Ground->SetPos(pos.x, pos.y + 1, pos.z);
+	obj.prim_obj.PushBack(Ground);
+	obj.phys_obj.PushBack(App->physics->AddBody(*Ground, this, 0.0f, false));
 }
