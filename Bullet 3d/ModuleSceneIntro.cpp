@@ -22,6 +22,18 @@ bool ModuleSceneIntro::Start()
 	CreateObject({65.5f,20,79},{15,2,1.5}, White);
 	CreateObject({65.5f,20,83},{15,2,1.5}, White);
 	CreateObject({80,20,81},{15,2,15}, White);
+	//Left Wall
+	CreateObject({200,0,0}, {2,600,600 }, BrightBlue);
+	//Top Wall
+	CreateObject({0,200,0}, { 600,2,600 }, BrightBlue);
+	//BotWall
+	CreateObject({ 0,-200,0 }, { 600,2,600 }, BrightBlue);
+	//RightWall
+	CreateObject({-200,0,0}, {2,600,600 }, BrightBlue);
+	//FrontWall
+	CreateObject({0,0,200 }, { 600,600,2}, BrightBlue);
+	//BackWall
+	CreateObject({0,0,-200}, { 600,600,2}, BrightBlue);
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
 
