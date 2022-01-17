@@ -16,7 +16,12 @@ bool ModuleSceneIntro::Start()
 {
 	LOG("Loading Intro assets");
 	bool ret = true;
-	CreateObject({0,0,10},{20,20,20}, Red);
+	CreateObject({0,20,0},{15,2,15}, Red);
+	CreateObject({0,20,48.5f},{15,2,80}, White);
+	CreateObject({32.5f,20,81},{50,2,15}, White);
+	CreateObject({65.5f,20,79},{15,2,1.5}, White);
+	CreateObject({65.5f,20,83},{15,2,1.5}, White);
+	CreateObject({80,20,81},{15,2,15}, White);
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
 
