@@ -23,6 +23,8 @@ bool ModuleSceneIntro::Start()
 	CreateObject({65,20,83},{15,2,1.5}, White);
 	CreateObject({87.5f,20,81},{30,2,15}, White);
 	CreateObject({87.5f,20,81},{30,2,15}, White);
+
+	CreateRamp({ 117.5f,25,81 }, { 30,2,15 }, 20, { 0, 0, 1 }, White);
 	
 	//Left Wall
 	CreateObject({200,0,0}, {2,600,600 }, BrightBlue);
@@ -76,4 +78,15 @@ void ModuleSceneIntro::CreateObject(const vec3 pos, const vec3 dim, Color bColor
 	Ground->SetPos(pos.x, pos.y + 1, pos.z);
 	obj.prim_obj.PushBack(Ground);
 	obj.phys_obj.PushBack(App->physics->AddBody(*Ground, this, 0.0f, false));
+}
+void ModuleSceneIntro::CreateRamp(const vec3 pos, const vec3 dim, float angle, const vec3 u, Color bColor)
+{
+	// Create a cube to render a building
+	Cube* o;
+	o = new Cube(dim.x, dim.y, dim.z);
+	o->color = bColor;
+	o->SetPos(pos.x, pos.y + 1, pos.z);
+	o->SetRotation(angle, { u.x, u.y, u.z });
+	obj.prim_obj.PushBack(o);
+	obj.phys_obj.PushBack(App->physics->AddBody(*o,this,0.0f,false));
 }
