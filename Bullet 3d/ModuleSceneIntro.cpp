@@ -19,9 +19,10 @@ bool ModuleSceneIntro::Start()
 	CreateObject({0,20,0},{15,2,15}, Red);
 	CreateObject({0,20,48.5f},{15,2,80}, White);
 	CreateObject({32.5f,20,81},{50,2,15}, White);
-	CreateObject({65.5f,20,79},{15,2,1.5}, White);
-	CreateObject({65.5f,20,83},{15,2,1.5}, White);
-	CreateObject({80,20,81},{15,2,15}, White);
+	CreateObject({65,20,79},{15,2,1.5}, White);
+	CreateObject({65,20,83},{15,2,1.5}, White);
+	CreateObject({87.5f,20,81},{30,2,15}, White);
+	
 	//Left Wall
 	CreateObject({200,0,0}, {2,600,600 }, BrightBlue);
 	//Top Wall
@@ -34,6 +35,7 @@ bool ModuleSceneIntro::Start()
 	CreateObject({0,0,200 }, { 600,600,2}, BrightBlue);
 	//BackWall
 	CreateObject({0,0,-200}, { 600,600,2}, BrightBlue);
+	
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
 
