@@ -24,6 +24,7 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 	void CreateObject(const vec3 pos, const vec3 dim, Color bColor);
+	void CreateRamp(const vec3 pos, const vec3 dim,float angle, const vec3 u,Color bColor);
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 
 public:
@@ -36,6 +37,7 @@ public:
 	*/
 
 	Sphere Bola;
+	Cube Ramp;
 
 	MapObj obj;
 	PhysBody3D* pb_chassis;
