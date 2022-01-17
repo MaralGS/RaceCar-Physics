@@ -166,13 +166,10 @@ update_status ModulePlayer::Update(float dt)
 	}
 
 	App->physics->totalForce = acceleration + App->physics->fimp;
-
+	
 	if (App->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN || zeroAux == true)
 	{
-		App->physics->fimp = 0.0f;
-		vehicle->SetPos(0, 22, 0);
-		vehicle->Brake(1000);
-		zeroAux = true;
+		Reset();
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_0) == NULL && zeroAux == false)
@@ -189,4 +186,11 @@ update_status ModulePlayer::Update(float dt)
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;
+}
+
+void ModulePlayer::Reset() {
+	App->physics->fimp = 0.0f;
+	vehicle->SetPos(0, 22, 0);
+	vehicle->Brake(1000);
+	zeroAux = true;
 }
