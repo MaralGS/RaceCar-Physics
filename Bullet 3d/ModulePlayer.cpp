@@ -125,14 +125,14 @@ update_status ModulePlayer::Update(float dt)
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && spacer == false) {
-		App->physics->fimp += 250;
+   		App->physics->fimp += 250;
 		if (App->physics->fimp >= 22500) {
 			App->physics->fimp = 22500;
 			spacer = true;
 		}
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == NULL || spacer == true) {
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP || spacer == true) {
 		App->physics->fimp -= 250;
 		App->physics->fimpaux += 50;
 		if (App->physics->fimp <= 0) {
@@ -145,7 +145,7 @@ update_status ModulePlayer::Update(float dt)
 		App->physics->fimpaux = 0;
 	}
 
-	if (App->physics->fimpaux == 0) {
+	if (App->physics->fimpaux <= 0) {
 		spacer = false;
 	}
 
@@ -197,8 +197,10 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Turn(turn);
 	vehicle->Render();
 
+	float timer = SDL_GetTicks() / 1000;
+	time = 180 - timer;
 	char title[80];
-	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
+	sprintf_s(title, "%.1f Km/h"  "\t %.2f s", vehicle->GetKmh(),time);
 	App->window->SetTitle(title);
 
 	if (dead == true)

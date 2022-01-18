@@ -14,6 +14,7 @@ ModuleSceneIntro::~ModuleSceneIntro()
 // Load assets
 bool ModuleSceneIntro::Start()
 {
+
 	LOG("Loading Intro assets");
 	bool ret = true;
 	CreateObject({ -70,40,0 }, { 15,2,15 }, Red);
@@ -122,6 +123,8 @@ update_status ModuleSceneIntro::Update(float dt)
 	Plane p(0, 1, 0,0);
 	p.axis = true;
 	p.Render();
+
+	
 
 	for (int i = 0; i < obj.prim_obj.Count(); i++)
 		obj.prim_obj[i]->Render();
