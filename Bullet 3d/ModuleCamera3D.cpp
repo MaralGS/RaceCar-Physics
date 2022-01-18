@@ -61,12 +61,13 @@ update_status ModuleCamera3D::Update(float dt)
 	//Reference += newPos;
 	//////////////////////////////////////////////////CAMARA FIXED////////////////////////////////////////////////////////////
 	Position.x = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() - 15 * App->player->vehicle->vehicle->getForwardVector().getX();
-	Position.y = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 3 * App->player->vehicle->vehicle->getUpAxis();
+	Position.y = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 7 * App->player->vehicle->vehicle->getUpAxis();
 	Position.z = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() - 15 * App->player->vehicle->vehicle->getForwardVector().getZ();
 	float playerPosX = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() + 10 * App->player->vehicle->vehicle->getForwardVector().getX();
+	float playerPosY = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 10 * App->player->vehicle->vehicle->getForwardVector().getY();
 	float playerPosZ = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() + 10 * App->player->vehicle->vehicle->getForwardVector().getZ();
 
-	LookAt(vec3(playerPosX, 1, playerPosZ));
+	LookAt(vec3(playerPosX, playerPosY, playerPosZ));
 
 	// Mouse motion ----------------
 
