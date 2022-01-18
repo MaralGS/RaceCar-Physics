@@ -97,7 +97,7 @@ bool ModulePlayer::Start()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(0, 22, 0);
+	vehicle->SetPos(-70, 22, 0);
 
 	return true;
 }
@@ -121,7 +121,7 @@ update_status ModulePlayer::Update(float dt)
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && App->physics->fimp <= 0) {  // DELAY d'uns 5/6 segons
-		App->physics->fimp = 20000;
+		App->physics->fimp = 22500;
 		zeroAux = false;
 	}
 
@@ -190,7 +190,7 @@ update_status ModulePlayer::Update(float dt)
 
 void ModulePlayer::Reset() {
 	App->physics->fimp = 0.0f;
-	vehicle->SetPos(0, 22, 0);
+	vehicle->SetPos(-70, 22, 0);
 	vehicle->Brake(1000);
 	zeroAux = true;
 }

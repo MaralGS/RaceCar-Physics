@@ -36,6 +36,8 @@ public:
 	Sphere s_snake2[MAX_SNAKE];
 	*/
 
+	float timer;
+
 	Sphere Bola;
 	Cube Ramp;
 

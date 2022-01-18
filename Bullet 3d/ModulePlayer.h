@@ -20,6 +20,7 @@ public:
 	void Reset();
 	bool CleanUp();
 
+
 public:
 
 	PhysVehicle3D* vehicle;

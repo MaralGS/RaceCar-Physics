@@ -122,6 +122,7 @@ update_status ModulePhysics3D::Update(float dt)
 
 	Fdragx = ((App->player->vehicle->GetKmh() * App->player->vehicle->GetKmh()) / 3.6) * density * areax * cd;
 
+
 	if(App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 		debug = !debug;
 
