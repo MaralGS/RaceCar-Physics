@@ -187,7 +187,7 @@ update_status ModulePlayer::Update(float dt)
 
 	if (dead == true)
 	{
-		vehicle->SetPos(0, 23, 0);
+		vehicle->SetPos(-70, 22, 0);
 	}
 
 	else
