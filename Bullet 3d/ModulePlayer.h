@@ -2,6 +2,8 @@
 #include "Module.h"
 #include "Globals.h"
 #include "p2Point.h"
+#include <string>
+using namespace std;
 
 struct PhysVehicle3D;
 
@@ -31,6 +33,8 @@ public:
 	float timeaux = 0.0f;
 	bool spacer = false;
 	bool dead = false;
-	
+	string turbo;
+
+
 	bool zeroAux;
 };

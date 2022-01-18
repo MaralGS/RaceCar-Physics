@@ -200,7 +200,18 @@ update_status ModulePlayer::Update(float dt)
 	float timer = SDL_GetTicks() / 1000;
 	time = 180 - timer;
 	char title[80];
-	sprintf_s(title, "%.1f Km/h"  "\t %.2f s", vehicle->GetKmh(),time);
+
+	if (spacer == true) {
+		sprintf_s(title, "%.1f Km/h"  "\t %.2f s \t Turbo: Charging...", vehicle->GetKmh(), time);
+	}
+	else {
+		sprintf_s(title, "%.1f Km/h"  "\t %.2f s \t Turbo: Ready!", vehicle->GetKmh(), time);
+	}
+
+	if (time < 0) {
+		return UPDATE_STOP;
+	}
+	
 	App->window->SetTitle(title);
 
 	if (dead == true)
