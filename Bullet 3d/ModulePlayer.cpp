@@ -97,7 +97,7 @@ bool ModulePlayer::Start()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(-70, 22, 0);
+	vehicle->SetPos(-70, 42, 0);
 
 	return true;
 }
@@ -120,17 +120,33 @@ update_status ModulePlayer::Update(float dt)
 		zeroAux = false;
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && App->physics->fimp <= 0) {  // DELAY d'uns 5/6 segons
-		App->physics->fimp = 22500;
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
 		zeroAux = false;
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == NULL) {
-		App->physics->fimp -= 100;
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && spacer == false) {
+		App->physics->fimp += 250;
+		if (App->physics->fimp >= 22500) {
+			App->physics->fimp = 22500;
+			spacer = true;
+		}
 	}
 
-	if (App->physics->fimp < 0) {
-		App->physics->fimp = 0;
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == NULL || spacer == true) {
+		App->physics->fimp -= 250;
+		App->physics->fimpaux += 50;
+		if (App->physics->fimp <= 0) {
+			App->physics->fimp = 0;
+		}
+		spacer = true;
+	}
+
+	if (App->physics->fimpaux >= 22500) {
+		App->physics->fimpaux = 0;
+	}
+
+	if (App->physics->fimpaux == 0) {
+		spacer = false;
 	}
 
 	brake += App->physics->Fdragx;
@@ -187,9 +203,8 @@ update_status ModulePlayer::Update(float dt)
 
 	if (dead == true)
 	{
-		vehicle->SetPos(-70, 22, 0);
+		Reset();
 	}
-
 	else
 	{
 		dead = false;
@@ -200,7 +215,7 @@ update_status ModulePlayer::Update(float dt)
 
 void ModulePlayer::Reset() {
 	App->physics->fimp = 0.0f;
-	vehicle->SetPos(-70, 22, 0);
+	vehicle->SetPos(-70, 42, 0);
 	vehicle->Brake(1000);
 	zeroAux = true;
 }

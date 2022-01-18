@@ -36,6 +36,7 @@ public:
 	float cd;
 
 	float fimp = 0.0f;
+	float fimpaux = 0.0f;
 	float totalForce;
 
 	PhysBody3D* AddBody(const Sphere& sphere, float mass = 1.0f);
