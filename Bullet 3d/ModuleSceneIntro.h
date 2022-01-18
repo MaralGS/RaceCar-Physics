@@ -25,6 +25,7 @@ public:
 	bool CleanUp();
 	void CreateObject(const vec3 pos, const vec3 dim, Color bColor);
 	void CreateRamp(const vec3 pos, const vec3 dim,float angle, const vec3 u,Color bColor);
+	void CreateSensor(const vec3 pos, const vec3 dim);
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 
 public:
@@ -35,6 +36,8 @@ public:
 	PhysBody3D* pb_snake2[MAX_SNAKE];
 	Sphere s_snake2[MAX_SNAKE];
 	*/
+
+	PhysBody3D* DeadSensor;
 
 	float timer;
 

@@ -30,6 +30,7 @@ public:
 	float time;
 	float timeaux = 0.0f;
 	bool spacer = false;
+	bool dead = false;
 	
 	bool zeroAux;
 };

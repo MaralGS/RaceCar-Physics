@@ -104,6 +104,8 @@ bool ModuleSceneIntro::Start()
 	//BackWall
 	CreateObject({100,0,-200}, { 600,600,2}, BrightBlue);
 	
+	CreateSensor({ 0,0,0 }, { 100,0,100 });
+
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
 
@@ -154,4 +156,13 @@ void ModuleSceneIntro::CreateRamp(const vec3 pos, const vec3 dim, float angle, c
 	o->SetRotation(angle, { u.x, u.y, u.z });
 	obj.prim_obj.PushBack(o);
 	obj.phys_obj.PushBack(App->physics->AddBody(*o,this,0.0f,false));
+}
+
+void ModuleSceneIntro::CreateSensor(const vec3 pos, const vec3 dim)
+{
+	// Create a cube to render a building
+	Cube* Sensor;
+	Sensor = new Cube(100, 0, 100);
+	Sensor->SetPos(pos.x, pos.y + 1, pos.z);
+	DeadSensor = App->physics->AddBody(*Sensor, this, 0.0f, true);
 }

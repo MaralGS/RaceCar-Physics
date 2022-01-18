@@ -185,6 +185,16 @@ update_status ModulePlayer::Update(float dt)
 	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
 	App->window->SetTitle(title);
 
+	if (dead == true)
+	{
+		vehicle->SetPos(0, 23, 0);
+	}
+
+	else
+	{
+		dead = false;
+	}
+
 	return UPDATE_CONTINUE;
 }
 
