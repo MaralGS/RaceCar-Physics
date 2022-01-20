@@ -25,7 +25,7 @@ public:
 	bool CleanUp();
 	void CreateObject(const vec3 pos, const vec3 dim, Color bColor);
 	void CreateRamp(const vec3 pos, const vec3 dim,float angle, const vec3 u,Color bColor);
-	void CreateSensor(const vec3 pos, const vec3 dim);
+	void CreateSensor(const vec3 pos, const vec3 dim, int id);
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 
 public:

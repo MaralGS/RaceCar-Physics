@@ -101,7 +101,7 @@ bool ModuleSceneIntro::Start()
 	//BackWall
 	CreateObject({ 100,0,-200 }, { 600,600,2 }, BrightBlue);
 
-	//CreateSensor({ 0, 1,0 }, {100,1,100});
+	CreateSensor({ 0, 1,0 }, {100,1,100}, 2);
 
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
@@ -133,12 +133,9 @@ update_status ModuleSceneIntro::Update(float dt)
 
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
-	if (body1->is_Sensor)
+	if (body2->id == 2)
 	{
-		if (body1 == DeadSensor)
-		{
 			App->player->dead = true;
-		}
 	}
 }
 
@@ -164,11 +161,12 @@ void ModuleSceneIntro::CreateRamp(const vec3 pos, const vec3 dim, float angle, c
 	obj.phys_obj.PushBack(App->physics->AddBody(*o,this,0.0f,false));
 }
 
-void ModuleSceneIntro::CreateSensor(const vec3 pos, const vec3 dim)
+void ModuleSceneIntro::CreateSensor(const vec3 pos, const vec3 dim, int idS)
 {
 	// Create a cube to render a building
 	Cube* Sensor;
 	Sensor = new Cube(dim.x, dim.y, dim.z);
 	Sensor->SetPos(pos.x, pos.y + 1, pos.z);
 	DeadSensor = App->physics->AddBody(*Sensor, this, 0.0f, true);
+	DeadSensor->id = idS;
 }
