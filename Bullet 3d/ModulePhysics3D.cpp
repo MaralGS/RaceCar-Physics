@@ -62,7 +62,7 @@ bool ModulePhysics3D::Start()
 
 	// Big plane as ground
 	{
-		btCollisionShape* colShape = new btStaticPlaneShape(btVector3(0, 1, 0), 0);
+		btCollisionShape* colShape = new btStaticPlaneShape(btVector3(0, 1, 0), -50);
 
 		btDefaultMotionState* myMotionState = new btDefaultMotionState();
 		btRigidBody::btRigidBodyConstructionInfo rbInfo(0.0f, myMotionState, colShape);
