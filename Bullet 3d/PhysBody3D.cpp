@@ -61,3 +61,8 @@ void PhysBody3D::SetAsSensor(bool is_Sensor)
 		}
 	}
 }
+
+void PhysBody3D::SetId(int id)
+{
+	this->id = id;
+}

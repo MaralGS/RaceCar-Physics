@@ -19,8 +19,10 @@ public:
 	void SetTransform(const float* matrix) const;
 	void SetPos(float x, float y, float z);
 	void SetAsSensor(bool is_Sensor);
+	void SetId(int id);
 
-	bool is_Sensor = false;
+	bool is_Sensor;
+	int id;
 private:
 	btRigidBody* body = nullptr;
 

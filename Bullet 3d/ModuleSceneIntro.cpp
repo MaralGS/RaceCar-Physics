@@ -101,7 +101,7 @@ bool ModuleSceneIntro::Start()
 	//BackWall
 	CreateObject({ 100,0,-200 }, { 600,600,2 }, BrightBlue);
 
-	CreateSensor({ 0, 1,0 }, {100,1,100}, 2);
+	CreateSensor({0,1,0}, {100,1,100}, 2);
 
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
