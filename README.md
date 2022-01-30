@@ -24,4 +24,4 @@ The only form to ecape is overcome the obstacles on a limit time, and escape fro
  -0 Key: The Box restart your movement
  -Space key: Turbo
  -E Key: Teleport you on the ond of the loop (Easy mode)
- 
+ -ESC Key: Close game
