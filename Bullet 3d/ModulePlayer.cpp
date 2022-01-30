@@ -208,19 +208,45 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Turn(turn);
 	vehicle->Render();
 
-	float timer = SDL_GetTicks() / 1000;
-	time = 180 - timer;
+	//timer
+	if (comodin <= 60) {
+		comodin++;
+	}
+	if (comodin == 60) {
+		comodin = 0;
+		if (timerM != 0 || timerS != 0)
+		{
+			timerS--;
+
+		}
+
+	}
+	if (timerM != 0 && timerS == 0) {
+
+		if (timerS == 0)
+		{
+			timerM--;
+			timerS = 60;
+
+		}
+
+	}
+	if (timerM == 0 && timerS == 0) {
+		dead = true;
+		timerM = 2;
+		timerS = 60;
+	}
+	if (timerM !=2 || timerS != 60)
+	{
+		dead = false;
+	}
 	char title[80];
-
 	if (spacer == true) {
-		sprintf_s(title, "%.1f Km/h"  "\t %.2f s \t Turbo: Charging...", vehicle->GetKmh(), time);
-	}
-	else {
-		sprintf_s(title, "%.1f Km/h"  "\t %.2f s \t Turbo: Ready!", vehicle->GetKmh(), time);
+		sprintf_s(title, "%.1f Km/h"  "\t %d:%.d s \t Turbo: Charging...", vehicle->GetKmh(), timerM, timerS);
 	}
 
-	if (time < 0) {
-		return UPDATE_STOP;
+	else {
+		sprintf_s(title, "%.1f Km/h"  "\t %d:%.d s \t Turbo: Ready!", vehicle->GetKmh(), timerM, timerS);
 	}
 	
 	App->window->SetTitle(title);
@@ -242,11 +268,12 @@ void ModulePlayer::Reset() {
 	reset.rotate(0, vec3(0, 0, 1));
 	vehicle->SetTransform(&reset);
 	App->physics->fimp = 0.0f;
-	vehicle->SetPos(-70, 44, 0);
+	vehicle->SetPos(-70, 42, 0);
 	vehicle->Brake(1000);
 	zeroAux = true;
 
 }
+
 void ModulePlayer::Reset1() {
 	mat4x4 reset1;
 	reset1.rotate(0, vec3(0, 0, 1));

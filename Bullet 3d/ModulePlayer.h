@@ -30,7 +30,9 @@ public:
 	float turn;
 	float acceleration;
 	float brake;
-	float time;
+	int timerS = 00;
+	int timerM = 2;
+	int comodin = 0;
 	float timeaux = 0.0f;
 	bool spacer = false;
 	bool dead = false;
