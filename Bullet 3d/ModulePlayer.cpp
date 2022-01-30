@@ -203,7 +203,7 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Render();
 
 	float timer = SDL_GetTicks() / 1000;
-	time = 180 - timer;
+	time = 10 - timer;
 	char title[80];
 
 	if (spacer == true) {
@@ -214,7 +214,9 @@ update_status ModulePlayer::Update(float dt)
 	}
 
 	if (time < 0) {
-		return UPDATE_STOP;
+		App->player->Reset();
+		timer = 0;
+		time = 10;
 	}
 	
 	App->window->SetTitle(title);
@@ -246,7 +248,7 @@ void ModulePlayer::Reset1() {
 	reset1.rotate(0, vec3(0, 0, 1));
 	vehicle->SetTransform(&reset1);
 	App->physics->fimp = 0.0f;
-	vehicle->SetPos(120, 15, 30.5);
+	vehicle->SetPos(90, 15, 30.5);
 	vehicle->Brake(1000);
 	zeroAux = true;
 	

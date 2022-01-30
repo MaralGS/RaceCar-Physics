@@ -18,6 +18,7 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 	CreateObject({ -70,40,0 }, { 15,2,15 }, Red);
+	CreateObject({ 90,15,270 }, { 100,2,250 }, Red);
 	CreateObject({ -70,40,48.5f }, { 15,2,80 }, White);
 	CreateObject({ -38.5f,40,81 }, { 50,2,15 }, White);
 	CreateObject({ -6,40,79 }, { 15,2,1.5 }, White);
@@ -83,10 +84,6 @@ bool ModuleSceneIntro::Start()
 	CreateObject({ 90,9,45 }, { 20,2,30 }, Blue);
 	CreateRamp({ 90,11,65 }, { 20,2,30 }, -20, { 1,0,0 }, Blue);
 
-	Cylinder c(10, 8);
-	c.SetPos(90, 30, 135);
-	c.SetRotation(90, { 0,1,0 });
-	App->physics->AddBody(c, 0);
 
 	//Left Wall
 	CreateObject({ 300,0,0 }, { 2,600,600 }, BrightBlue);
@@ -102,9 +99,9 @@ bool ModuleSceneIntro::Start()
 	CreateObject({ 400,230,135 }, { 600,600,2 }, BrightBlue);
 	CreateObject({ -225,230,135 }, { 600,600,2 }, BrightBlue);
 	//BackWall
-	CreateObject({ 100,0,-200 }, { 600,600,2 }, BrightBlue);
+	CreateObject({ 100,0,-200 }, { 600,600,2 }, White);
 
-	CreateSensor({0,-49,0}, {100,1,100}, 2);
+	CreateObject({0,-50,0}, {1000,1,1000}, Black);
 
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
@@ -136,10 +133,7 @@ update_status ModuleSceneIntro::Update(float dt)
 
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
-	if (body2->id == 2)
-	{
-			App->player->dead = true;
-	}
+
 }
 
 void ModuleSceneIntro::CreateObject(const vec3 pos, const vec3 dim, Color bColor)
@@ -162,14 +156,4 @@ void ModuleSceneIntro::CreateRamp(const vec3 pos, const vec3 dim, float angle, c
 	o->SetRotation(angle, { u.x, u.y, u.z });
 	obj.prim_obj.PushBack(o);
 	obj.phys_obj.PushBack(App->physics->AddBody(*o,this,0.0f,false));
-}
-
-void ModuleSceneIntro::CreateSensor(const vec3 pos, const vec3 dim, int idS)
-{
-	// Create a cube to render a building
-	Cube* Sensor;
-	Sensor = new Cube(dim.x, dim.y, dim.z);
-	Sensor->SetPos(pos.x, pos.y + 1, pos.z);
-	DeadSensor = App->physics->AddBody(*Sensor, this, 0.0f, true);
-	DeadSensor->id = idS;
 }

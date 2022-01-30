@@ -66,9 +66,26 @@ update_status ModuleCamera3D::Update(float dt)
 	float playerPosX = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() + 10 * App->player->vehicle->vehicle->getForwardVector().getX();
 	float playerPosY = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 15 * App->player->vehicle->vehicle->getForwardVector().getY();
 	float playerPosZ = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() + 10 * App->player->vehicle->vehicle->getForwardVector().getZ();
+	
+	//win condition
+	float win;
+
+	win = SDL_GetTicks() / 1000;
+
 	if (playerPosZ > 165) {
-		return UPDATE_STOP;
+		if (temps == true) {
+			Counterwin = win;
+			temps = false;
+		}
+		
+		if (Counterwin + 4 == win)
+		{
+			App->player->Reset();
+			temps = true;
+		}
 	}
+
+	//loose condition
 	if (playerPosY < -45) {
 		App->player->Reset();
 	}
