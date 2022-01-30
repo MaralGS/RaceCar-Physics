@@ -23,7 +23,7 @@ will return you at the beginning creating a loop you will never be able to get o
 
 
 
-##How to play
+## How to play
 
  -UP Key: forward movement
  -Down Key: backward movement
