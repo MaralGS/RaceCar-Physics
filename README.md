@@ -15,6 +15,12 @@ But you are not alone, when you turn it over, you can ask for help to the gods. 
 they will just help you by turning you around very poorly, only on the same direction, with the few magical powers they can use on you.
 
 The only form to ecape is overcome the obstacles on a limit time, and you will escape from the box.
+
+That's what you thought buajajajajaja!!! After 10 seconds, the gods that just want entertainment watching your suffering,
+will return you at the beginning creating a loop you will never be able to get out.
+
+
+
 ##How to play
 
  -UP Key: forward movement
