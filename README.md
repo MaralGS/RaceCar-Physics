@@ -22,6 +22,7 @@ The only form to ecape is overcome the obstacles on a limit time, and escape fro
  -Left And Right Key: rotation movement
  -R Key: Ask help to the gods
  -0 Key: The Box restart your movement
+ -F1 Key: Enable/Disable coliders
  -Space key: Turbo
  -E Key: Teleport you on the ond of the loop (Easy mode)
  -ESC Key: Close game
