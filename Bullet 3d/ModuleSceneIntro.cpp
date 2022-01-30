@@ -38,7 +38,7 @@ bool ModuleSceneIntro::Start()
 
 	CreateObject({ 220,15.5,-100.5f }, { 30,20,30 }, Brown);
 	CreateObject({ 200,0.5,-120.5f }, { 30,20,30 }, Brown);
-	CreateObject({ 180,-5.5,-140.5f }, { 20,20,20 }, Brown);
+	CreateObject({ 180,-5.5,-140.5f }, { 20,20,20 }, Brown); 
 	CreateRamp({ 160,5,-140.5f }, { 40,2,20 }, -4, { 0,0,1 }, Brown);
 
 	CreateObject({ 90,5,-145.5 }, { 100,2,30 }, Brown);
@@ -77,13 +77,65 @@ bool ModuleSceneIntro::Start()
 	CreateRamp({ 90,11,65 }, { 20,2,30 }, -20, { 1,0,0 }, Brown);
 
 
+	//Arrow 1
+	Const[1] = new Cube(20, 10, 2);
+	Const[1]->color = Red;
 
-	Const = new Cube(20, 20, 20);
-	Const->color = Red;
-	Const->SetPos(-70, 40, 50);
-	obj.prim_obj.PushBack(Const);
-	obj.phys_obj.PushBack(App->physics->AddBody(*Const, this, 0.0f, false));
+	Const[2] = new Cube(10, 10, 2);
+	Const[2]->color = Red;
+	Const[2]->SetRotation(45, { 0, 0, 1 });
 
+	//Arrow 2
+	Const[3] = new Cube(20, 10, 2);
+	Const[3]->color = Red;
+	Const[3]->SetRotation(90, { 0, 1, 0 });
+
+	Const[4] = new Cube(2, 10, 10);
+	Const[4]->color = Red;
+	Const[4]->SetRotation(45, { 1, 0, 0 });
+
+	//Arrow 3
+	Const[5] = new Cube(20, 10, 2);
+	Const[5]->color = Red;
+
+	Const[6] = new Cube(10, 10, 2);
+	Const[6]->color = Red;
+	Const[6]->SetRotation(45, { 0, 0, 1 });
+
+	//Arrow 4
+	Const[7] = new Cube(20, 10, 2);
+	Const[7]->color = Red;
+	Const[7]->SetRotation(90, { 0, 1, 0 });
+
+	Const[8] = new Cube(2, 10, 10);
+	Const[8]->color = Red;
+	Const[8]->SetRotation(45, { 1, 0, 0 });
+
+	//Arrow 5
+	Const[9] = new Cube(20, 10, 2);
+	Const[9]->color = Red;
+
+	Const[10] = new Cube(10, 10, 2);
+	Const[10]->color = Red;
+	Const[10]->SetRotation(45, { 0, 0, 1 });
+
+	//Arrow 6
+	Const[11] = new Cube(20, 10, 2);
+	Const[11]->color = Red;
+	Const[11]->SetRotation(90, { 0, 1, 0 });
+
+	Const[12] = new Cube(2, 10, 10);
+	Const[12]->color = Red;
+	Const[12]->SetRotation(45, { 1, 0, 0 });
+
+	//Arrow 7
+	Const[13] = new Cube(20, 10, 2);
+	Const[13]->color = Red;
+	Const[13]->SetRotation(90, { 0, 0, 1 });
+
+	Const[14] = new Cube(10, 10, 2);
+	Const[14]->color = Red;
+	Const[14]->SetRotation(45, { 0, 0, 1 });
 
 	//Left Wall
 	CreateObject({ 300,0,0 }, { 2,600,600 }, BrightBlue);
@@ -125,7 +177,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.Render();
 	if (left == true) {
 		if (movement < 10) {
-			movement += 0.05f;
+			movement += 0.1f;
 		}
 		else if (movement > 10) {
 			left = false;
@@ -133,16 +185,35 @@ update_status ModuleSceneIntro::Update(float dt)
 	}
 	if (left == false) {
 		if (movement > 0) {
-			movement -= 0.05f;
+			movement -= 0.1f;
 		}
 		else if (movement < 0) {
 			left = true;
 		}
 	}
-	Const->SetPos(-70 + movement, 40, 50);
+	Const[1]->SetPos(-75 + movement, 50, 100);
+	Const[2]->SetPos(-65 + movement, 50, 100);
 
+	Const[3]->SetPos(220, 60, 75 + movement);
+	Const[4]->SetPos(220, 60, 65 + movement);
 
-	Const->Render();
+	Const[5]->SetPos(220 + movement, 55, -140);
+	Const[6]->SetPos(210 + movement, 55, -140);
+
+	Const[7]->SetPos(15, 20, -150 + movement);
+	Const[8]->SetPos(15, 20, -140 + movement);
+	
+	Const[9]->SetPos(40 + movement, 20, -30 );
+	Const[10]->SetPos(50 + movement, 20, -30 );
+
+	Const[11]->SetPos(120, 20, -60 + movement);
+	Const[12]->SetPos(120, 20, -50 + movement);
+
+	Const[13]->SetPos(85, 60 + movement, 120);
+	Const[14]->SetPos(85, 50 + movement, 120);
+
+	for (int i = 1; i < 15; i++)
+		Const[i]->Render();
 
 	for (int i = 0; i < obj.prim_obj.Count(); i++)
 		obj.prim_obj[i]->Render();

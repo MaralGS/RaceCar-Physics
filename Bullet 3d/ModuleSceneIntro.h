@@ -45,7 +45,7 @@ public:
 	float movement = 0.0f;
 	Sphere Bola;
 	Cube Ramp;
-	Cube* Const;
+	Cube* Const[100];
 
 	MapObj obj;
 	PhysBody3D* pb_chassis;
