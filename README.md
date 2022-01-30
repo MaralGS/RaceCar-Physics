@@ -7,14 +7,14 @@
 
 
 ## LORE
-Obstacle Run is a racing car game, where you're stuck inside a box on a infinite track, why the track are infinite?
-Because you can't die, when you fall on the abism, the box active his mecanism and teleport you at the beginning, thus preventing your death,
-and when the time is over, the box going to do the same.
+Obstacle Run is a racing car game, where you're stuck inside a box on a infinite track, why the track is infinite?
+Because you can't die, when you fall on the abism, the box active his mecanism and teleport you at the beginning, preventing your death,
+and if the time ends, the box would do the same.
 
-But you aren't alone, when you turn it over, you can ask for help to the gods. But since the box only allows 1% power of the gods,
+But you are not alone, when you turn it over, you can ask for help to the gods. But since the box only allows 1% power of the gods,
 they will just help you by turning you around very poorly, only on the same direction, with the few magical powers they can use on you.
 
-The only form to ecape is overcome the obstacles on a limit time, and escape from the box.
+The only form to ecape is overcome the obstacles on a limit time, and you will escape from the box.
 ##How to play
 
  -UP Key: forward movement
@@ -23,6 +23,6 @@ The only form to ecape is overcome the obstacles on a limit time, and escape fro
  -R Key: Ask help to the gods
  -0 Key: The Box restart all
  -F1 Key: Enable/Disable coliders
- -Space key: Turbo
+ -Space key: Turbo (The longer you hold the space, the more power the turbo will have)
  -E Key: Teleport you at the end of the loop (Easy mode)
  -ESC Key: Close game
