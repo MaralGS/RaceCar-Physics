@@ -151,7 +151,7 @@ bool ModuleSceneIntro::Start()
 	CreateObject({ 400,230,135 }, { 600,600,2 }, BrightBlue);
 	CreateObject({ -225,230,135 }, { 600,600,2 }, BrightBlue);
 	//BackWall
-	CreateObject({ 100,0,-200 }, { 600,600,2 }, White);
+	CreateObject({ 100,0,-200 }, { 600,600,2 }, BrightBlue);
 
 	CreateObject({0,-50,0}, {1000,1,1000}, Black);
 
