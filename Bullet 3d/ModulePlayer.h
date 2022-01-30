@@ -22,7 +22,7 @@ public:
 	void Reset();
 	void Reset1();
 	bool CleanUp();
-
+	void ResetRotation();
 
 public:
 

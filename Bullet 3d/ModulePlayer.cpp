@@ -183,6 +183,12 @@ update_status ModulePlayer::Update(float dt)
 
 	App->physics->totalForce = acceleration + App->physics->fimp;
 	
+	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
+	{
+		ResetRotation();
+	}
+
+
 	if (App->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN || zeroAux == true)
 	{
 		Reset();
@@ -236,18 +242,30 @@ void ModulePlayer::Reset() {
 	reset.rotate(0, vec3(0, 0, 1));
 	vehicle->SetTransform(&reset);
 	App->physics->fimp = 0.0f;
-	vehicle->SetPos(-70, 42, 0);
+	vehicle->SetPos(-70, 44, 0);
 	vehicle->Brake(1000);
 	zeroAux = true;
-	
+
 }
 void ModulePlayer::Reset1() {
 	mat4x4 reset1;
 	reset1.rotate(0, vec3(0, 0, 1));
 	vehicle->SetTransform(&reset1);
 	App->physics->fimp = 0.0f;
-	vehicle->SetPos(90, 15, 30.5);
+	vehicle->SetPos(208, 20.5, -112.5f);
 	vehicle->Brake(1000);
 	zeroAux = true;
-	
+
+}
+
+void ModulePlayer::ResetRotation()
+{
+	float playerPosX = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX();
+	float playerPosY = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getY();
+	float playerPosZ = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ();
+	mat4x4 reset3;
+	reset3.rotate(0, vec3(0, 0, 1));
+	vehicle->SetTransform(&reset3);
+	vehicle->SetPos(playerPosX, playerPosY, playerPosZ);
+	vehicle->Brake(1000);
 }

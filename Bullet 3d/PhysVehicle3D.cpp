@@ -25,7 +25,7 @@ void PhysVehicle3D::Render()
 {
 	Cylinder wheel;
 
-	wheel.color = Blue;
+	wheel.color = Black;
 
 	for(int i = 0; i < vehicle->getNumWheels(); ++i)
 	{
@@ -46,9 +46,14 @@ void PhysVehicle3D::Render()
 	Cube aler1(info.chassis_size.x - 1.9, info.chassis_size.y - 1.5, info.chassis_size.z - 3.7);
 	Cube aler2(info.chassis_size.x - 1.9, info.chassis_size.y - 1.5, info.chassis_size.z - 3.7);
 	Cube aler3(info.chassis_size.x + 1, info.chassis_size.y - 1.9, info.chassis_size.z - 3.5 );
-
 	//colors
-	//body.color = Red;
+	chassis.color = White;
+	body.color = Blue;
+	bodyleght.color = Blue;
+	bodyfront.color = Blue;
+	aler1.color = Black;
+	aler2.color = Black;
+	aler3.color = Black;
 
 	//position world(x,y,z)
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&chassis.transform);
