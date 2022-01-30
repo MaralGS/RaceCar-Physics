@@ -68,27 +68,7 @@ update_status ModuleCamera3D::Update(float dt)
 	float playerPosZ = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() + 10 * App->player->vehicle->vehicle->getForwardVector().getZ();
 	
 	//win condition
-	float win;
 
-	win = SDL_GetTicks() / 1000;
-
-	if (playerPosZ > 165) {
-		if (temps == true) {
-			Counterwin = win;
-			temps = false;
-		}
-		
-		if (Counterwin + 4 == win)
-		{
-			App->player->Reset();
-			temps = true;
-		}
-	}
-
-	//loose condition
-	if (playerPosY < -45) {
-		App->player->Reset();
-	}
 	LookAt(vec3(playerPosX, playerPosY, playerPosZ));
 
 	// Mouse motion ----------------

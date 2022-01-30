@@ -191,9 +191,11 @@ update_status ModulePlayer::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN || zeroAux == true)
 	{
+		timerM = 2;
+		timerS = 60;
 		Reset();
 	}
-	if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
 	{
 		Reset1();
 		zeroAux = false;
@@ -207,6 +209,34 @@ update_status ModulePlayer::Update(float dt)
 
 	vehicle->Turn(turn);
 	vehicle->Render();
+
+	float win;
+
+	win = SDL_GetTicks() / 1000;
+
+	//loose/win condition
+	float playerPosX = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() + 10 * App->player->vehicle->vehicle->getForwardVector().getX();
+	float playerPosY = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 15 * App->player->vehicle->vehicle->getForwardVector().getY();
+	float playerPosZ = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() + 10 * App->player->vehicle->vehicle->getForwardVector().getZ();
+
+	if (playerPosZ > 165) {
+		if (temps == true) {
+			Counterwin = win;
+			temps = false;
+		}
+
+		if (Counterwin + 10 == win)
+		{
+			App->player->Reset();
+			temps = true;
+		}
+	}
+
+	//loose condition
+	if (playerPosY < -45) {
+		App->player->Reset();
+	}
+
 
 	//timer
 	if (comodin <= 60) {
@@ -279,7 +309,7 @@ void ModulePlayer::Reset1() {
 	reset1.rotate(0, vec3(0, 0, 1));
 	vehicle->SetTransform(&reset1);
 	App->physics->fimp = 0.0f;
-	vehicle->SetPos(208, 20.5, -112.5f);
+	vehicle->SetPos(93, 15, 30.5);
 	vehicle->Brake(1000);
 	zeroAux = true;
 

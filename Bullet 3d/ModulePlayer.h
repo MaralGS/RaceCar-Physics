@@ -25,7 +25,8 @@ public:
 	void ResetRotation();
 
 public:
-
+	bool temps = true;
+	float Counterwin = 0;
 	PhysVehicle3D* vehicle;
 	float turn;
 	float acceleration;
