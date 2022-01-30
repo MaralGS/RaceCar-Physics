@@ -22,7 +22,7 @@ public:
 	void SetId(int id);
 
 	bool is_Sensor;
-	int id;
+	int id = 0;
 private:
 	btRigidBody* body = nullptr;
 

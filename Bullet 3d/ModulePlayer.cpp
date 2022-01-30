@@ -227,8 +227,12 @@ update_status ModulePlayer::Update(float dt)
 }
 
 void ModulePlayer::Reset() {
+	mat4x4 reset;
+	reset.rotate(0, vec3(0, 0, 1));
+	vehicle->SetTransform(&reset);
 	App->physics->fimp = 0.0f;
 	vehicle->SetPos(-70, 42, 0);
 	vehicle->Brake(1000);
 	zeroAux = true;
+	
 }

@@ -109,6 +109,7 @@ void PhysVehicle3D::Render()
 	aler1.Render();
 	aler2.Render();
 	aler3.Render();
+	
 }
 
 // ----------------------------------------------------------------------------
@@ -152,3 +153,4 @@ float PhysVehicle3D::GetKmh() const
 {
 	return vehicle->getCurrentSpeedKmHour();
 }
+
