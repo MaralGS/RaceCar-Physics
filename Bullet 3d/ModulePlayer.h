@@ -20,6 +20,7 @@ public:
 	bool Start();
 	update_status Update(float dt);
 	void Reset();
+	void Reset1();
 	bool CleanUp();
 
 

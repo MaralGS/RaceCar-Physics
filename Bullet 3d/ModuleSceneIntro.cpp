@@ -97,7 +97,10 @@ bool ModuleSceneIntro::Start()
 	//RightWall
 	CreateObject({ -100,0,0 }, { 2,600,600 }, BrightBlue);
 	//FrontWall
-	CreateObject({ 100,0,200 }, { 600,600,2 }, BrightBlue);
+	CreateObject({ 100,-280,135 }, { 600,600,2 }, BrightBlue);
+	CreateObject({ 100,340,135 }, { 600,600,2 }, BrightBlue);
+	CreateObject({ 400,230,135 }, { 600,600,2 }, BrightBlue);
+	CreateObject({ -225,230,135 }, { 600,600,2 }, BrightBlue);
 	//BackWall
 	CreateObject({ 100,0,-200 }, { 600,600,2 }, BrightBlue);
 

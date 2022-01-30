@@ -187,6 +187,10 @@ update_status ModulePlayer::Update(float dt)
 	{
 		Reset();
 	}
+	if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN || zeroAux == true)
+	{
+		Reset1();
+	}
 
 	if (App->input->GetKey(SDL_SCANCODE_0) == NULL && zeroAux == false)
 	{
@@ -232,6 +236,16 @@ void ModulePlayer::Reset() {
 	vehicle->SetTransform(&reset);
 	App->physics->fimp = 0.0f;
 	vehicle->SetPos(-70, 42, 0);
+	vehicle->Brake(1000);
+	zeroAux = true;
+	
+}
+void ModulePlayer::Reset1() {
+	mat4x4 reset;
+	reset.rotate(0, vec3(0, 0, 1));
+	vehicle->SetTransform(&reset);
+	App->physics->fimp = 0.0f;
+	vehicle->SetPos(120, 15, 30.5);
 	vehicle->Brake(1000);
 	zeroAux = true;
 	
