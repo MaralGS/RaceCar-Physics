@@ -26,11 +26,19 @@ will return you at the beginning creating a loop you will never be able to get o
 ## How to play
 
  -UP Key: forward movement
+ 
  -Down Key: backward movement
+ 
  -Left And Right Key: rotation movement
+ 
  -R Key: Ask help to the gods
+ 
  -0 Key: The Box restart all
+ 
  -F1 Key: Enable/Disable coliders
+ 
  -Space key: Turbo (The longer you hold the space, the more power the turbo will have)
+ 
  -E Key: Teleport you at the end of the loop (Easy mode)
+ 
  -ESC Key: Close game
