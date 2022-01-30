@@ -36,6 +36,7 @@ bool ModuleSceneIntro::Start()
 	CreateObject({ 215,35.5,10.5f }, { 7,2,80 }, White);
 	CreateObject({ 220,35.5,-50.5f }, { 7,2,80 }, White);
 
+
 	CreateObject({ 220,15.5,-100.5f }, { 20,20,20 }, White);
 	CreateObject({ 200,0.5,-120.5f }, { 20,20,20 }, White);
 	CreateObject({ 180,-5.5,-140.5f }, { 20,20,20 }, White);
@@ -83,6 +84,13 @@ bool ModuleSceneIntro::Start()
 	CreateRamp({ 90,11,27.5 }, { 20,2,30 }, 10, { 1, 0, 0 }, Green);
 	CreateObject({ 90,9,45 }, { 20,2,30 }, Blue);
 	CreateRamp({ 90,11,65 }, { 20,2,30 }, -20, { 1,0,0 }, Blue);
+	
+
+	Const = new Cube(20, 20, 20);
+	Const->color = Red;
+	Const->SetPos(-70, 40, 50);
+	obj.prim_obj.PushBack(Const);
+	obj.phys_obj.PushBack(App->physics->AddBody(*Const, this, 0.0f, false));
 
 
 	//Left Wall
@@ -123,8 +131,26 @@ update_status ModuleSceneIntro::Update(float dt)
 	Plane p(0, 1, 0,0);
 	p.axis = true;
 	p.Render();
+	if (left == true) {
+		if (movement < 10) {
+			movement += 0.05f;
+		}
+		else if (movement > 10) {
+			left = false;
+		}
+	}
+	if (left == false) {
+		if (movement > 0) {
+			movement -= 0.05f;
+		}
+		else if (movement < 0) {
+			left = true;
+		}
+	}
+	Const->SetPos(-70 + movement, 40, 50);
 
-	
+
+	Const->Render();
 
 	for (int i = 0; i < obj.prim_obj.Count(); i++)
 		obj.prim_obj[i]->Render();
@@ -156,4 +182,17 @@ void ModuleSceneIntro::CreateRamp(const vec3 pos, const vec3 dim, float angle, c
 	o->SetRotation(angle, { u.x, u.y, u.z });
 	obj.prim_obj.PushBack(o);
 	obj.phys_obj.PushBack(App->physics->AddBody(*o,this,0.0f,false));
+}
+
+void ModuleSceneIntro::CreateConstrain(const vec3 pos, const vec3 dim, Color bColor) {
+	Cube* Constrain;
+	Constrain = new Cube(dim.x, dim.y, dim.z);
+	Constrain->color = bColor;
+	Constrain->SetPos(pos.x + movement, pos.y + 1, pos.z);
+	obj.prim_obj.PushBack(Constrain);
+	obj.phys_obj.PushBack(App->physics->AddBody(*Constrain, this, 0.0f, false));
+}
+
+void ModuleSceneIntro::MoveConstrain(Cube& constrain, const vec3 pos) {
+	constrain.SetPos(pos.x + 10, pos.y,pos.z);
 }

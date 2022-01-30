@@ -27,6 +27,8 @@ public:
 	void CreateRamp(const vec3 pos, const vec3 dim,float angle, const vec3 u,Color bColor);
 	void CreateSensor(const vec3 pos, const vec3 dim, int id);
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
+	void CreateConstrain(const vec3 pos, const vec3 dim, Color bColor);
+	void MoveConstrain(Cube& constrain, const vec3 pos);
 
 public:
 	/*
@@ -38,11 +40,12 @@ public:
 	*/
 
 	PhysBody3D* DeadSensor;
-
-	float timer;
-
+	bool left = true;
+	float timer = 0.0f;
+	float movement = 0.0f;
 	Sphere Bola;
 	Cube Ramp;
+	Cube* Const;
 
 	MapObj obj;
 	PhysBody3D* pb_chassis;

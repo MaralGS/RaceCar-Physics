@@ -203,7 +203,7 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Render();
 
 	float timer = SDL_GetTicks() / 1000;
-	time = 10 - timer;
+	time = 180 - timer;
 	char title[80];
 
 	if (spacer == true) {
@@ -214,9 +214,7 @@ update_status ModulePlayer::Update(float dt)
 	}
 
 	if (time < 0) {
-		App->player->Reset();
-		timer = 0;
-		time = 10;
+		return UPDATE_STOP;
 	}
 	
 	App->window->SetTitle(title);
