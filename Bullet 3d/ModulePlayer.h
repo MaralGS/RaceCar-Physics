@@ -38,4 +38,5 @@ public:
 
 
 	bool zeroAux;
+	bool zeroAux1;
 };
